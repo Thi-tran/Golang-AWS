@@ -10,7 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 
 	"bytes"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -58,7 +58,7 @@ func GetImage(url string) (bytes []byte) {
 
 	defer resp.Body.Close()
 
-	bytes, err = ioutil.ReadAll(resp.Body)
+	bytes, err = io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err)
 	}
